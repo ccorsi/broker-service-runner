@@ -4,7 +4,7 @@
 
   <groupId>org.apache.activemq</groupId>
   <artifactId>broker-service-runner</artifactId>
-  <version>5.4.2-fuse-04-05</version>
+  <version>5.4.2-fuse-00-00</version>
   <packaging>jar</packaging>
 
   <name>broker-service-runner</name>
@@ -12,7 +12,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <activemq.version>5.4.2-fuse-04-05</activemq.version>
+    <activemq.version>5.4.2-fuse-00-00</activemq.version>
   </properties>
 
   <build>
