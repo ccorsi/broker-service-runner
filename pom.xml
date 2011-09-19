@@ -4,7 +4,7 @@
 
   <groupId>org.apache.activemq</groupId>
   <artifactId>broker-service-runner</artifactId>
-  <version>5.5.0-fuse-00-27</version>
+  <version>5.3.1-fuse-00-00</version>
   <packaging>jar</packaging>
 
   <name>broker-service-runner</name>
@@ -12,7 +12,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <activemq.version>5.5.0-fuse-00-27</activemq.version>
+    <activemq.version>5.3.1-fuse-00-00</activemq.version>
   </properties>
 
   <build>
@@ -25,6 +25,9 @@
   				<filesets>
   					<fileset>
   						<directory>activemq</directory>
+  					</fileset>
+  					<fileset>
+  						<directory>activemq-data</directory>
   					</fileset>
   					<fileset>
   						<directory>hub</directory>
@@ -77,15 +80,9 @@
   		<optional>false</optional>
   	</dependency>
   	<dependency>
-  		<groupId>org.apache.activemq</groupId>
-  		<artifactId>activemq-spring</artifactId>
-  		<version>${activemq.version}</version>
-  		<optional>false</optional>
-  	</dependency>
-  	<dependency>
   		<groupId>org.apache.xbean</groupId>
   		<artifactId>xbean-spring</artifactId>
-  		<version>3.7</version>
+  		<version>3.6</version>
   		<optional>false</optional>
   	</dependency>
   	<dependency>
