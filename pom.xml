@@ -4,7 +4,7 @@
 
   <groupId>org.apache.activemq</groupId>
   <artifactId>broker-service-runner</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>5.5.0-fuse-00-27</version>
   <packaging>jar</packaging>
 
   <name>broker-service-runner</name>
@@ -12,6 +12,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <activemq.version>5.5.0-fuse-00-27</activemq.version>
   </properties>
 
   <build>
@@ -66,19 +67,19 @@
   	<dependency>
   		<groupId>org.apache.activemq</groupId>
   		<artifactId>activemq-core</artifactId>
-  		<version>5.4.2-fuse-04-05</version>
+  		<version>${activemq.version}</version>
   		<optional>false</optional>
   	</dependency>
   	<dependency>
   		<groupId>org.apache.activemq</groupId>
   		<artifactId>activemq-pool</artifactId>
-  		<version>5.4.2-fuse-04-05</version>
+  		<version>${activemq.version}</version>
   		<optional>false</optional>
   	</dependency>
   	<dependency>
   		<groupId>org.apache.activemq</groupId>
   		<artifactId>activemq-spring</artifactId>
-  		<version>5.4.2-fuse-04-05</version>
+  		<version>${activemq.version}</version>
   		<optional>false</optional>
   	</dependency>
   	<dependency>
@@ -90,7 +91,7 @@
   	<dependency>
   		<groupId>org.slf4j</groupId>
   		<artifactId>slf4j-simple</artifactId>
-  		<version>1.6.1</version>
+  		<version>1.5.11</version>
   		<optional>false</optional>
   	</dependency>
   	<dependency>
