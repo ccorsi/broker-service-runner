@@ -18,7 +18,8 @@
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
        xmlns="http://www.springframework.org/schema/beans" 
        xmlns:amq="http://activemq.apache.org/schema/core" 
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core-5.4.2.xsd ">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core-5.2.0.xsd ">
 
   <!-- Allows us to use system properties as variables in this configuration file -->
   <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
