@@ -49,7 +49,7 @@ public class BrokerServiceProcess {
 		System.out.println("STARTING BROKER USING " + brokerConfigFile + " configuration file.");
 		// Load and start the broker using the passed activemq configuration file.
 		BrokerService broker = BrokerFactory.createBroker(new URI(brokerConfigFile), true);
-		broker.waitUntilStarted();
+		// broker.waitUntilStarted(); FIXME: need to find another way to determine if broker started.
 		
 		if (Boolean.getBoolean("notifyIfStarted")) {
 			// FIXME: Provide a better mechanism to inform parent process that we've started.

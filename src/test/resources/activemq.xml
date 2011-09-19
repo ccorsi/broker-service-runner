@@ -18,29 +18,30 @@
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xmlns="http://www.springframework.org/schema/beans" 
 	xmlns:amq="http://activemq.apache.org/schema/core" 
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core-5.4.2.xsd ">
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core-5.2.0.xsd ">
 
-    <!-- Allows us to use system properties as variables in this configuration file -->
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location">
-            <value>@@PROPERTIESFILE@@</value>
-        </property>      
-    </bean>
+  <!-- Allows us to use system properties as variables in this configuration file -->
+  <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="location">
+      <value>@@PROPERTIESFILE@@</value>
+    </property>      
+  </bean>
 
-	<broker xmlns="http://activemq.apache.org/schema/core"
-		brokerName="activemq-${activemq.suffix.name}">
+  <broker xmlns="http://activemq.apache.org/schema/core"
+	  brokerName="activemq-${activemq.suffix.name}"
+          dataDirectory="${amqdb.dir}/${amqdb.prefix}/data">
 
-		<managementContext>
-			<managementContext connectorPath="/activemq-${activemq.suffix.name}" />
-		</managementContext>
+    <managementContext>
+      <managementContext connectorPath="/activemq-${activemq.suffix.name}" />
+    </managementContext>
 
-		<persistenceAdapter>
-			<kahaDB directory="${kahadb.dir}/${kahadb.prefix}/kahadb"/>
-		</persistenceAdapter>
-		
-		<transportConnectors>
-			<transportConnector name="openwire" uri="tcp://${hostname}:${port.number}"/>
-		</transportConnectors>
-	</broker>
+    <persistenceAdapter>
+      <amqPersistenceAdapter syncOnWrite="false" directory="${amqdb.dir}/${amqdb.prefix}/amqdb" maxFileLength="20 mb"/>
+    </persistenceAdapter>
+    
+    <transportConnectors>
+      <transportConnector name="openwire" uri="tcp://${hostname}:${port.number}"/>
+    </transportConnectors>
+  </broker>
 </beans>
-

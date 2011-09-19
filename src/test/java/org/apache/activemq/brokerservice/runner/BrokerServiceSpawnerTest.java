@@ -63,6 +63,7 @@ public class BrokerServiceSpawnerTest {
 		AbstractBrokerServiceSpawner spawner = new HubSpokeBrokerServiceSpawner();
 		spawner.execute();
 		
+		Thread.sleep(15000);
 		logger.info("All hub/spoke brokers have been started"); // Thread.sleep(15000);
 		
 		spawner.stopBrokers();
@@ -96,8 +97,8 @@ public class BrokerServiceSpawnerTest {
 			@Override
 			protected void populateProperties(Properties props, int id) {
 				props.setProperty("activemq.suffix.name", String.valueOf(id));
-				props.setProperty("kahadb.dir", "activemq");
-				props.setProperty("kahadb.prefix", String.valueOf(id));
+				props.setProperty("amqdb.dir", "activemq");
+				props.setProperty("amqdb.prefix", String.valueOf(id));
 				props.setProperty("hostname", "localhost");
 				props.setProperty("port.number", String.valueOf(currentPort++));
 			}
@@ -105,6 +106,7 @@ public class BrokerServiceSpawnerTest {
 		};
 		spawner.execute();
 		
+		Thread.sleep(15000);
 		logger.info("All brokers have been started"); // Thread.sleep(15000);
 		
 		spawner.stopBrokers();
@@ -134,15 +136,15 @@ public class BrokerServiceSpawnerTest {
 				case MASTER:
 					masterPort = currentPort++;
 					props.setProperty("master.suffix.name", String.valueOf(id));
-					props.setProperty("kahadb.dir", "master");
-					props.setProperty("kahadb.prefix", String.valueOf(id));
+					props.setProperty("amqdb.dir", "master");
+					props.setProperty("amqdb.prefix", String.valueOf(id));
 					props.setProperty("master.hostname", "localhost");
 					props.setProperty("master.port.number", String.valueOf(masterPort));
 					break;
 				case SLAVE:
 					props.setProperty("slave.suffix.name", String.valueOf(id));
-					props.setProperty("kahadb.dir", "slave");
-					props.setProperty("kahadb.prefix", String.valueOf(id));
+					props.setProperty("amqdb.dir", "slave");
+					props.setProperty("amqdb.prefix", String.valueOf(id));
 					props.setProperty("master.hostname", "localhost");
 					props.setProperty("master.port.number", String.valueOf(masterPort));
 					props.setProperty("slave.hostname", "localhost");
@@ -171,6 +173,7 @@ public class BrokerServiceSpawnerTest {
 		
 		Thread.sleep(5000);
 		
+		Thread.sleep(15000);
 		spawner.stopBrokers();
 		
 	}
@@ -201,15 +204,15 @@ public class BrokerServiceSpawnerTest {
 					mainPort = currentPort++;
 					mainId = id;
 					props.setProperty("main.suffix.name", String.valueOf(id));
-					props.setProperty("kahadb.dir", "main");
-					props.setProperty("kahadb.prefix", mainId + "-0");
+					props.setProperty("amqdb.dir", "main");
+					props.setProperty("amqdb.prefix", mainId + "-0");
 					props.setProperty("hostname", "localhost");
 					props.setProperty("port.number", String.valueOf(mainPort));
 					break;
 				case NETWORKED:
 					props.setProperty("network.suffix.name", String.valueOf(id));
-					props.setProperty("kahadb.dir", "network");
-					props.setProperty("kahadb.prefix", mainId + "-" + id);
+					props.setProperty("amqdb.dir", "network");
+					props.setProperty("amqdb.prefix", mainId + "-" + id);
 					props.setProperty("hostname", "localhost");
 					props.setProperty("port.number", String.valueOf(currentPort++));
 					props.setProperty("network.hostname", "localhost");
@@ -229,6 +232,7 @@ public class BrokerServiceSpawnerTest {
 		};
 		spawner.execute();
 		
+		Thread.sleep(15000);
 		logger.info("All network brokers setup has been started"); // Thread.sleep(15000);
 		
 		spawner.stopBrokers();
@@ -268,8 +272,8 @@ public class BrokerServiceSpawnerTest {
 			private void populateSpokeProperties(Properties props, int id) {
 				spokePort = currentPort++;
 				props.setProperty("spoke.suffix.name", String.valueOf(hubId) + "-" + String.valueOf(id));
-				props.setProperty("kahadb.dir", "spoke");
-				props.setProperty("kahadb.prefix", String.valueOf(id));
+				props.setProperty("amqdb.dir", "spoke");
+				props.setProperty("amqdb.prefix", String.valueOf(id));
 				props.setProperty("hub.hostname", "localhost");
 				props.setProperty("hub.port.number", String.valueOf(hubPort));
 				props.setProperty("spoke.hostname", "localhost");
@@ -280,8 +284,8 @@ public class BrokerServiceSpawnerTest {
 				hubId = id;
 				hubPort = currentPort++;
 				props.setProperty("hub.suffix.name", String.valueOf(id));
-				props.setProperty("kahadb.dir", "hub");
-				props.setProperty("kahadb.prefix", String.valueOf(id));
+				props.setProperty("amqdb.dir", "hub");
+				props.setProperty("amqdb.prefix", String.valueOf(id));
 				props.setProperty("hub.hostname", "localhost");
 				props.setProperty("hub.port.number", String.valueOf(hubPort));
 			}
@@ -300,6 +304,7 @@ public class BrokerServiceSpawnerTest {
 		
 		spawner.execute();
 		
+		Thread.sleep(15000);
 		logger.info("All hub/spoke brokers have been started using the extended hub/spoke version"); // Thread.sleep(15000);
 		
 		spawner.stopBrokers();
