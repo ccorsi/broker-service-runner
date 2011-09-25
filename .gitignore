@@ -1,3 +1,17 @@
 .classpath
 .project
 target
+spoke
+slave
+master
+hub
+main
+network
+activemq
+spoke-*
+master-*
+slave-*
+hub-*
+main-*
+network-*
+activemq-*
