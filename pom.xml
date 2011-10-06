@@ -12,7 +12,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <activemq.version>5.5.0-fuse-00-27</activemq.version>
+    <activemq.version>${project.version}</activemq.version>
   </properties>
 
   <build>
@@ -25,6 +25,9 @@
   	  <filesets>
   	    <fileset>
   	      <directory>activemq</directory>
+  	    </fileset>
+  	    <fileset>
+  	      <directory>activemq-data</directory>
   	    </fileset>
   	    <fileset>
   	      <directory>hub</directory>
@@ -54,6 +57,20 @@
   	</configuration>
   	<extensions>false</extensions>
   	<inherited>false</inherited>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.1.2</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

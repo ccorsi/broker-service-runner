@@ -28,6 +28,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Properties;
 
 import org.slf4j.Logger;
@@ -203,6 +204,11 @@ public abstract class AbstractBrokerServiceSpawner {
 	 * The overrided method has to use the spawner array
 	 */
 	protected abstract void createSpawners();
+
+	/**
+	 * This method will be called prior to the spawning the java command to allow you to add jvm arguments to the java command
+	 */
+ 	protected void addToJVMArgs(List<String> jvmArgs) {}
 
 	/**
 	 * @throws IOException

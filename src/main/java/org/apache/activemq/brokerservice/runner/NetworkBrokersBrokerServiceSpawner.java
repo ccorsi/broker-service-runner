@@ -148,21 +148,12 @@ public abstract class NetworkBrokersBrokerServiceSpawner extends AbstractBrokerS
 	 * 
 	 */
 	protected void createSpawners() {
-//		amqPort = Integer.parseInt(System.getProperty("amq.starting.port.number", "61616"));
 		logger.info("Using starting activemq port number: " + amqPort);
-//		int port = amqPort;
 		Properties properties;
 		
 		spawners = new Spawner[numberOfNetworkBrokers * numberOfNetworks];
 		int idx = 0;
-//		String networkHostname = "localhost";
-//		String hostname = "localhost";
 		for(int net = 0 ; net < numberOfNetworks ; net++) {
-//			String kahadbPrefix = net + "-0";
-//			String networkPortNumber = String.valueOf(port++);
-//			String portNumber = String.valueOf(port);
-//			properties = generateProperties(net + "-0", "main", kahadbPrefix,
-//					hostname, portNumber, networkHostname, networkPortNumber);
 			properties = new Properties();
 			populateProperties(TYPE.MAIN, properties, net);
 			// Start the master broker for the given id
@@ -175,6 +166,7 @@ public abstract class NetworkBrokersBrokerServiceSpawner extends AbstractBrokerS
 				spawners[idx] = new Spawner(
 						BrokerServiceProcess.class.getName(), "execute");
 				List<String> jvmArgs = new LinkedList<String>();
+                                addToJVMArgs(jvmArgs);
 				jvmArgs.add("-Dbroker.config.file=xbean:" + mainConfigFileName);
 				spawners[idx].setJVMArgs(jvmArgs);
 				spawners[idx].setIdentifier("MainBroker" + net + "-0");
@@ -186,12 +178,6 @@ public abstract class NetworkBrokersBrokerServiceSpawner extends AbstractBrokerS
 			}
 			idx++;
 			for(int id = 1 ; id < numberOfNetworkBrokers ; id++) {
-//				kahadbPrefix = net + "-" + id;
-//				networkPortNumber = String.valueOf(port++);
-//				portNumber = String.valueOf(port);
-//				properties = generateProperties(net + "-" + id, "network",
-//						kahadbPrefix, hostname, portNumber, networkHostname,
-//						networkPortNumber);
 				properties = new Properties();
 				this.populateProperties(TYPE.NETWORKED, properties, id);
 				// Start the master broker for the given id
@@ -203,6 +189,7 @@ public abstract class NetworkBrokersBrokerServiceSpawner extends AbstractBrokerS
 							networkedConfigFileName);
 					spawners[idx] = new Spawner(BrokerServiceProcess.class.getName(), "execute");
 					List<String> jvmArgs = new LinkedList<String>();
+                                        addToJVMArgs(jvmArgs);
 					jvmArgs.add("-Dbroker.config.file=xbean:" + networkedConfigFileName);
 					spawners[idx].setJVMArgs(jvmArgs);
 					spawners[idx].setIdentifier("NetworkBroker" + net + "-" + id);
