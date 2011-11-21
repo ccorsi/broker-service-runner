@@ -188,13 +188,13 @@ public abstract class AbstractBrokerServiceSpawner {
 	/**
 	 * This is called prior to calling the createSpawners method.
 	 */
-	protected void postCreateSpawners() {
+	protected void preCreateSpawners() {
 	}
 
 	/**
 	 * This is called after calling the createSpawners method.
 	 */
-	protected void preCreateSpawners() {
+	protected void postCreateSpawners() {
 	}
 
 	/**
