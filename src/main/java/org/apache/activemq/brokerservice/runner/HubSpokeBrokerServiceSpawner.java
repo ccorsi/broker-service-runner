@@ -98,6 +98,7 @@ public abstract class HubSpokeBrokerServiceSpawner extends AbstractBrokerService
 						hubTemplateFileName, hubConfigFileName);
 				spawners[spawnIdx] = new Spawner(BrokerServiceProcess.class.getName(), "execute");
 				List<String> jvmArgs = new LinkedList<String>();
+                                addToJVMArgs(jvmArgs);
 				jvmArgs.add("-Dbroker.config.file=xbean:" + hubConfigFileName);
 				spawners[spawnIdx].setJVMArgs(jvmArgs);
 				spawners[spawnIdx].setIdentifier("Hub:" + id);
@@ -130,6 +131,7 @@ public abstract class HubSpokeBrokerServiceSpawner extends AbstractBrokerService
 					spawners[spawnIdx] = new Spawner(
 							BrokerServiceProcess.class.getName(), "execute");
 					List<String> jvmArgs = new LinkedList<String>();
+                                        addToJVMArgs(jvmArgs);
 					jvmArgs.add("-Dbroker.config.file=xbean:" + spokeConfigFileName);
 					spawners[spawnIdx].setJVMArgs(jvmArgs);
 					spawners[spawnIdx].setIdentifier("Spoke:" + id + ":" + spoke);

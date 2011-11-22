@@ -105,7 +105,7 @@ public class BrokerServiceSpawnerTest {
 		};
 		spawner.execute();
 		
-		logger.info("All brokers have been started"); // Thread.sleep(15000);
+		logger.info("All brokers have been started");
 		
 		spawner.stopBrokers();
 		

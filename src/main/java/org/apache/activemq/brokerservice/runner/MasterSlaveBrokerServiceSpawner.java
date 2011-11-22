@@ -130,20 +130,13 @@ public abstract class MasterSlaveBrokerServiceSpawner extends AbstractBrokerServ
 	 * 
 	 */
 	protected void createSpawners() {
-//		amqPort = Integer.parseInt(System.getProperty("amq.starting.port.number", "61616"));
 		System.out.println("Using starting activemq port number: " + amqPort);
 		Properties properties;
 		
 		spawners = new Spawner[2 * numberOfMasterSlavesPairs];
 		for(int id = 0 ; id < numberOfMasterSlavesPairs ; id++) {
-//			String kahadbPrefix = String.valueOf(id);
-//			String masterHostname = "localhost";
-//			String masterPortNumber = String.valueOf(amqPort + 2 * id);
-//			String slaveHostname = "localhost";
-//			String slavePortNumber = String.valueOf(amqPort + 2 * id + 1);
 			// Start the master broker for the given id
 			try {
-				// properties = generateProperties(id, "master", kahadbPrefix, masterHostname, masterPortNumber, slaveHostname, slavePortNumber);
 				properties = new Properties();
 				populateProperties(TYPE.MASTER, properties, id);
 				String templatePrefix = this.getMasterTemplatePrefix();
@@ -153,6 +146,7 @@ public abstract class MasterSlaveBrokerServiceSpawner extends AbstractBrokerServ
 						templatePrefix + ".xml", configFileName);
 				spawners[2 * id] = new Spawner(BrokerServiceProcess.class.getName(), "execute");
 				List<String> jvmArgs = new LinkedList<String>();
+                                addToJVMArgs(jvmArgs);
 				jvmArgs.add("-Dbroker.config.file=xbean:" + configFileName);
 				spawners[2 * id].setJVMArgs(jvmArgs);
 				spawners[2 * id].setIdentifier("Master" + id);
@@ -174,8 +168,6 @@ public abstract class MasterSlaveBrokerServiceSpawner extends AbstractBrokerServ
 				 * 	- slave.port.number
 				 */
 				Thread.sleep(5000); // sleep for 5 seconds to allow the spawner master broker to startup properly....
-				// spawnBroker(id, "slave", kahadbPrefix, masterHostname, masterPortNumber, slaveHostname, slavePortNumber);
-				// properties = generateProperties(id, "slave", kahadbPrefix, masterHostname, masterPortNumber, slaveHostname, slavePortNumber);
 				String templatePrefix = this.getSlaveTemplatePrefix();
 				String configFileName = templatePrefix + "-" + id + ".xml";
 				properties = new Properties();
@@ -185,6 +177,7 @@ public abstract class MasterSlaveBrokerServiceSpawner extends AbstractBrokerServ
 						templatePrefix + ".xml", configFileName);
 				spawners[2 * id + 1] = new Spawner(BrokerServiceProcess.class.getName(), "execute");
 				List<String> jvmArgs = new LinkedList<String>();
+                                addToJVMArgs(jvmArgs);
 				jvmArgs.add("-Dbroker.config.file=xbean:" + configFileName);
 				spawners[2 * id + 1].setJVMArgs(jvmArgs);
 				spawners[2 * id + 1].setIdentifier("Slave" + id);
