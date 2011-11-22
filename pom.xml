@@ -4,7 +4,7 @@
 
   <groupId>org.apache.activemq</groupId>
   <artifactId>broker-service-runner</artifactId>
-  <version>5.4.2-fuse-00-00</version>
+  <version>5.4.2-fuse-04-05</version>
   <packaging>jar</packaging>
 
   <name>broker-service-runner</name>
