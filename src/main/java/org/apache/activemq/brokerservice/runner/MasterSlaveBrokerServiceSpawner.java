@@ -146,7 +146,7 @@ public abstract class MasterSlaveBrokerServiceSpawner extends AbstractBrokerServ
 						templatePrefix + ".xml", configFileName);
 				spawners[2 * id] = new Spawner(BrokerServiceProcess.class.getName(), "execute");
 				List<String> jvmArgs = new LinkedList<String>();
-                                addToJVMArgs(jvmArgs);
+				addToJVMArgs(jvmArgs);
 				jvmArgs.add("-Dbroker.config.file=xbean:" + configFileName);
 				spawners[2 * id].setJVMArgs(jvmArgs);
 				spawners[2 * id].setIdentifier("Master" + id);

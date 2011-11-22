@@ -119,7 +119,7 @@ public abstract class BrokersBrokerServiceSpawner extends AbstractBrokerServiceS
 				spawners[brokerId] = new Spawner(
 						BrokerServiceProcess.class.getName(), "execute");
 				List<String> jvmArgs = new LinkedList<String>();
-                                addToJVMArgs(jvmArgs);
+				addToJVMArgs(jvmArgs);
 				jvmArgs.add("-Dbroker.config.file=xbean:" + configFileName);
 				spawners[brokerId].setJVMArgs(jvmArgs);
 				spawners[brokerId].setIdentifier("ActiveMQBroker" + brokerId);

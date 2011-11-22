@@ -166,7 +166,7 @@ public abstract class NetworkBrokersBrokerServiceSpawner extends AbstractBrokerS
 				spawners[idx] = new Spawner(
 						BrokerServiceProcess.class.getName(), "execute");
 				List<String> jvmArgs = new LinkedList<String>();
-                                addToJVMArgs(jvmArgs);
+				addToJVMArgs(jvmArgs);
 				jvmArgs.add("-Dbroker.config.file=xbean:" + mainConfigFileName);
 				spawners[idx].setJVMArgs(jvmArgs);
 				spawners[idx].setIdentifier("MainBroker" + net + "-0");
