@@ -16,44 +16,11 @@
  */
 package org.apache.activemq.brokerservice.runner;
 
-import java.io.IOException;
-import java.net.Socket;
-
 /**
  * @author Claudio Corsi
  *
  */
-public class BrokerServiceManager implements IBrokerServiceManager {
-	
-	private Socket socket;
-	
-	public BrokerServiceManager(Socket socket) {
-		this.socket = socket;
-	}
+public enum StateEnum {
+	INITIALIZED, STARTED, STOPPED
 
-	public boolean waitUntilStarted() throws IOException {
-		if (socket != null) {
-			socket.getInputStream().read();
-			return true;
-		}
-		return false;
-	}
-	
-	public void stopBroker() throws IOException {
-		if (this.socket != null) {
-			this.socket.getOutputStream().write(1);
-			if (Boolean.getBoolean("notifyIfStopped")) {
-				// TODO:  I do not like this callback mechanism.  Find a better way....
-				this.waitUntilStopped();
-			}
-			this.socket.close();
-			this.socket = null;
-		}
-	}
-
-	private void waitUntilStopped() throws IOException {
-		if (this.socket != null) {
-			this.socket.getInputStream().read();
-		}
-	}
 }

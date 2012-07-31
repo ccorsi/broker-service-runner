@@ -43,7 +43,7 @@ public abstract class AbstractBrokerServiceSpawner {
 
 	private static final Logger logger = LoggerFactory.getLogger(AbstractBrokerServiceSpawner.class);
 	
-	private Collection<BrokerServiceManager> managers = new LinkedList<BrokerServiceManager>();
+	private Collection<IBrokerServiceManager> managers = new LinkedList<IBrokerServiceManager>();
 	
 	private int startedBrokers = 0;
 	
@@ -214,7 +214,7 @@ public abstract class AbstractBrokerServiceSpawner {
 	 * @throws IOException
 	 */
 	public final void stopBrokers() throws IOException {
-		for( BrokerServiceManager manager : managers) {
+		for( IBrokerServiceManager manager : managers) {
 			manager.stopBroker();
 		}
 	}

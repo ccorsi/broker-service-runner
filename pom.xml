@@ -117,5 +117,10 @@
       <version>1.0.2</version>
       <optional>false</optional>
     </dependency>
+    <dependency>
+    	<groupId>org.valhalla.tools.net</groupId>
+    	<artifactId>net-proc-comm-tool</artifactId>
+    	<version>1.0.0</version>
+    </dependency>
   </dependencies>
 </project>
